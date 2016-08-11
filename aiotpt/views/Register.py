@@ -16,7 +16,7 @@ class RegisterEndpoint(JsonEndpoint):
       validator=lambda n: self.RE_VALIDNAME.search(n) == None)
     email = self.sanitizeString(req.POST, "Email", minlen=3, maxlen=255)
     # I believe these password requirements are sane
-    password = self.sanitizeString(req.POST, "Password", minlen=3, maxlen=255)
+    password = self.sanitizeString(req.POST, "Password", minlen=8, maxlen=255)
 
     async with db.cursor() as cur:
       await cur.execute("""
